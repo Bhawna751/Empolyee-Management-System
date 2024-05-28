@@ -6,6 +6,7 @@ import net.employee.ems_backend.service.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @AllArgsConstructor
 @RestController
@@ -23,6 +24,12 @@ public class EmployeeController {
     public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable("id") Long empId){
         EmployeeDto empDto = empSer.getEmployeeById(empId);
         return ResponseEntity.ok(empDto);
+    }
+    //Build Get All Employees REST API
+    @GetMapping 
+    public ResponseEntity<List<EmployeeDto>> getAllEmployees(){
+        List<EmployeeDto> emps = empSer.getAllEmployees();
+        return ResponseEntity.ok(emps);
     }
 
 }
