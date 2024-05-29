@@ -2,6 +2,7 @@ package net.employee.ems_backend.controller;
 
 import lombok.AllArgsConstructor;
 import net.employee.ems_backend.dto.EmployeeDto;
+import net.employee.ems_backend.mapper.EmployeeMapper;
 import net.employee.ems_backend.service.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,13 @@ public class EmployeeController {
     public ResponseEntity<List<EmployeeDto>> getAllEmployees(){
         List<EmployeeDto> emps = empSer.getAllEmployees();
         return ResponseEntity.ok(emps);
+    }
+    //Build update employee REST API
+    @PutMapping("/{id}")
+    public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable("id") Long empId,
+                                                      @RequestBody EmployeeDto updatedEmp){
+        EmployeeDto empDto= empSer.updateEmployee(empId,updatedEmp);
+        return ResponseEntity.ok(empDto);
     }
 
 }
